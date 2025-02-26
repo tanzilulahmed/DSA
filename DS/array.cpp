@@ -69,7 +69,7 @@ int main() {
 
 
 
-//check if the array is sorted 
+//check if the array is sorted for ascending order
 bool checkSorted(vector<int>& nums) {
     for (int i = 0; i < nums.size() - 1; i++) { 
         if (nums[i] > nums[i + 1]) {  // Check if current element is greater than the next
@@ -78,4 +78,66 @@ bool checkSorted(vector<int>& nums) {
         }
     }
     return true;
+}
+
+//remove duplicate elements
+#include <set>
+int removeDuplicates(vector<int> &arr, int n) {
+	set<int> st;
+	for(int i=0; i<n; i++){
+		st.insert(arr[i]);
+	}
+	int index=0;
+	for(auto it: st){
+		index++;
+	}
+    return index;
+}
+
+or
+
+#include <set>
+int removeDuplicates(vector<int> &arr, int n) {
+	set<int> st;
+	for(int i=0; i<n; i++){
+		st.insert(arr[i]);
+	}
+	// int index=0;
+	// for(auto it: st){
+	// 	index++;
+	// }
+    return st.size();
+}
+
+or 
+
+#include <set>
+int removeDuplicates(vector<int> &arr, int n) {
+	set<int> st(arr.begin(), arr.end());
+    return st.size();
+}
+
+or //better soln
+#include <set>
+int removeDuplicates(vector<int> &arr, int n) {
+	int i=0;
+	for(int j=1; j<n; j++){
+		if(arr[i]!=arr[j]){
+			arr[i+1]=arr[j];
+			i++;
+		}
+	}
+	return i+1;
+}
+
+// Left Rotate an Array by One
+
+#include <bits/stdc++.h> 
+vector<int> rotateArray(vector<int>& arr, int n) {
+    int temp= arr[0];
+    for(int i=0; i<n; i++){
+        arr[i]=arr[i+1];
+    }
+arr[n-1]= temp;
+return arr;
 }
